@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cassert>
+#include <algorithm>
 
 // These includes are only for the debug print capability used during testing
 #include <sstream>
@@ -82,7 +83,6 @@ public:
 
     bool erase(const TKey& key)
     {
-        // TODO: delete the node
         if (m_head == nullptr)
             return false;
 
@@ -98,6 +98,7 @@ public:
             {
                 delete m_head;
                 m_head = nullptr;
+                m_size--;
                 return true;
             }
 
@@ -134,7 +135,6 @@ public:
             else
             {
                 leftNode = leftNode->leftNode;
-                level--; // Still need to process this level
             }
         }
 
